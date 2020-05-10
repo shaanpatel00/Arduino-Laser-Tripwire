@@ -1,0 +1,41 @@
+/*
+By Shaan Patel
+*/
+
+int ledPin = 13; // red led pin
+int enA = 11;
+int in1 = 7;
+int in2 = 8;
+int lightReader = A0; // photoresistor pin
+int x = 0; // initial value for x
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(ledPin, OUTPUT);
+  pinMode(enA, OUTPUT);
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+  pinMode(lightReader, INPUT);
+  delay(5000);
+}
+
+void loop() {
+  x = analogRead(lightReader); // this is for serial monitoring purpose
+  Serial.print("Reading: "); 
+  Serial.println(x);
+  
+  if (x < 790) 
+    {
+      digitalWrite(ledPin, HIGH);
+      analogWrite(enA, 255);
+      digitalWrite(in1, HIGH);
+	    digitalWrite(in2, LOW);
+    }
+  /*else 
+    {
+      digitalWrite(ledPin, LOW);
+      analogWrite(enA, 255);
+      digitalWrite(in1, LOW);
+	    digitalWrite(in2, LOW);
+    }*/
+}
